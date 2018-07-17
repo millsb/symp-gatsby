@@ -1,0 +1,25 @@
+{
+  home: item(path:"/sitecore/content/home") {
+    id
+    ...on SampleItem {
+      text {
+        value
+      }
+    }
+    landingPages: children {
+      ...on LandingPage {
+        id
+        title {
+          value
+        }
+        shortTitle {
+          value
+        }
+        intro {
+          value
+        }
+      }
+    }
+  }
+}
+ 
