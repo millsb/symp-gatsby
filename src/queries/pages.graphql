@@ -6,9 +6,9 @@
         value
       }
     }
-    landingPages: children {
+    __node__landingPages: children {
       ...on LandingPage {
-        id
+          id
         title {
           value
         }
@@ -18,8 +18,18 @@
         intro {
           value
         }
-      }
-    }
+        __node__detailPages: children {
+            ...on DetailPage {
+            id
+            title {
+                value
+            }
+            body {
+                value
+            }
+         }
+       }
+     }
+   }
   }
 }
- 

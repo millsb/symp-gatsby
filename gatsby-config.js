@@ -1,8 +1,8 @@
-const SC_API_KEY = '89746470-C1BB-4559-BB59-CBFCB761D9AE'
+const SC_API_KEY = '89746470-C1BB-4559-BB59-CBFCB761D9AE';
 
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Default Starter',
+    title: 'The Dee-Mo Society',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -15,4 +15,4 @@ module.exports = {
       },
     },
   ],
-}
+};

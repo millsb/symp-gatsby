@@ -15,6 +15,15 @@ const Layout = ({ children, data }) => (
             title
           }
         }
+        allLandingPage {
+          edges {
+            node {
+              shortTitle {
+                value
+              }
+            }
+          }
+        }
       }
     `}
     render={data => (
@@ -26,7 +35,7 @@ const Layout = ({ children, data }) => (
             { name: 'keywords', content: 'sample, something' },
           ]}
         />
-        <Header siteTitle={data.site.siteMetadata.title} />
+        <Header siteTitle={data.site.siteMetadata.title} navItems={data.allLandingPage.edges} />
         <div
           style={{
             margin: '0 auto',

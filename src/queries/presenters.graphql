@@ -1,7 +1,6 @@
 {
 item(path:"/sitecore/content/home/presenters") {
-    id                                           
-	  children {
+	  __node__presenters: children {
       ...on Presenter {
         id
         bio {
