@@ -4,7 +4,7 @@ import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from "gatsby"
 
 import Header from './header'
-import './layout.css'
+import './layout.scss'
 
 const Layout = ({ children, data }) => (
   <StaticQuery
@@ -13,15 +13,6 @@ const Layout = ({ children, data }) => (
         site {
           siteMetadata {
             title
-          }
-        }
-        allLandingPage {
-          edges {
-            node {
-              shortTitle {
-                value
-              }
-            }
           }
         }
       }
@@ -34,16 +25,15 @@ const Layout = ({ children, data }) => (
             { name: 'description', content: 'Sample' },
             { name: 'keywords', content: 'sample, something' },
           ]}
-        />
-        <Header siteTitle={data.site.siteMetadata.title} navItems={data.allLandingPage.edges} />
-        <div
-          style={{
-            margin: '0 auto',
-            maxWidth: 960,
-            padding: '0px 1.0875rem 1.45rem',
-            paddingTop: 0,
-          }}
         >
+          <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600,700" rel="stylesheet"/>
+        </Helmet>
+        <Header siteTitle={data.site.siteMetadata.title} navItems={[
+          { label: "About Us", path: "/about" },
+          { label: "Our Programs", path: "/programs" },
+          { label: "Volunteer", path: "/volunteer"}
+        ]} />
+        <div>
           {children}
         </div>
       </>

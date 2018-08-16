@@ -11,12 +11,12 @@ const LandingPage = ({ data }) => (
 
 export default LandingPage;
 
-export const query = graphql`
-  query getLandingPage($shortTitle: String!) {
-    page: landingPage(shortTitle: { value: { eq: $shortTitle } }) {
-      title {
-        value
-      }
-    }
-  }
-`
+// export const query = graphql`
+//   query getLandingPage($shortTitle: String!) {
+//     page: landingPage(shortTitle: { value: { eq: $shortTitle } }) {
+//       title {
+//         value
+//       }
+//     }
+//   }
+// `
