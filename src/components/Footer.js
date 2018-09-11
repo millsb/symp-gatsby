@@ -8,6 +8,7 @@ export default () => {
     padding-top: 4rem;
     display: flex;
     box-shadow:
+    4px 4px 4px #333,
     16px -16px 0px ${COLORS.green.string()}, 
     -16px 16px 0px ${COLORS.seafoam.string()};
     
