@@ -26,7 +26,7 @@ const Layout = ({ children, data }) => (
             { name: 'keywords', content: 'sample, something' },
           ]}
         >
-          <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600,700" rel="stylesheet"/>
+          <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600,700;Vollkorn:400" rel="stylesheet"/>
         </Helmet>
         <Header siteTitle={data.site.siteMetadata.title} navItems={[
           { label: "About Us", path: "/about" },

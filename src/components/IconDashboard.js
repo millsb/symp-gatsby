@@ -1,18 +1,11 @@
 import React from 'react';
 import styled from 'react-emotion';
-import { COLORS, InnerContainer } from './common';
+import {InnerContainer, Heading } from './common';
 import PlaceIcon from '@material-ui/icons/PlaceTwoTone';
 import FaceIcon from '@material-ui/icons/FaceTwoTone';
 import SchoolIcon from '@material-ui/icons/SchoolTwoTone';
 import LaptopMacIcon from '@material-ui/icons/LaptopMacTwoTone'
 
-const Heading = styled('h2')`
-  width: 100%;
-  color: ${COLORS.black.string()};
-  font-size: 1.4rem;
-  font-weight: 700;
-  text-align: center;
-`;
 
 const IconWrapper = styled('div')`
   max-width: 720px;
@@ -39,6 +32,7 @@ const IconBox = ({ icon, stat, text, color }) => {
     align-items: center;
     min-width: 25%;
     padding: 2rem 0;
+    margin-bottom: 2rem;
 
     span {
       font-size: 1.6rem;
