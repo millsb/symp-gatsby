@@ -1,4 +1,4 @@
-const SC_API_KEY = '89746470-C1BB-4559-BB59-CBFCB761D9AE';
+const SC_API_KEY = '75975ED5-7D7A-4E2D-995A-BB526D511A01';
 
 module.exports = {
   siteMetadata: {
@@ -16,15 +16,14 @@ module.exports = {
         name: "images",
         path: `${__dirname}/src/images/`
       }
-    }
-
-    // {
-    //   resolve: 'gatsby-source-sitecore',
-    //   options: {
-    //     token: SC_API_KEY,
-    //     endpoint: 'http://symp.local/sitecore/api/graph/items/master',
-    //     queries: `${__dirname}/src/queries/*.graphql`,
-    //   },
-    // },
+    },
+    {
+      resolve: 'gatsby-source-sitecore',
+      options: {
+        token: SC_API_KEY,
+        endpoint: 'https://sitecore-622750-single.azurewebsites.net/sitecore/api/graph/items/master',
+        queries: `${__dirname}/src/queries/*.graphql`,
+      },
+    },
   ],
 };

@@ -1,9 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-const { promisify } = require('util');
 const glob = require('glob');
 const { GraphQLClient } = require('graphql-request');
-const { forEachObjIndexed, toPairs, merge, concat, forEach } = require('ramda');
 const { createNodes, liftCustomNodes } = require('./util');
 const { DEBUG_MODE } = require('./constants');
 const { keywordsError, checkForFaultyFields } = require('./faulty-keywords');

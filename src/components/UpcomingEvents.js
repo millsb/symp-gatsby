@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import * as R from "ramda";
 import styled from 'react-emotion';
 import { COLORS, Heading, InnerContainer } from './common';
 import Link from "gatsby-link";
+import slugify from "slugify";
 
 const Well = styled('section')`
   background-color: ${COLORS.seafoam.fade(0.85).string()};
@@ -36,6 +38,8 @@ const EventStub = ({
   onSelect,
   isSelected,
 }) => {
+  const dateFormatOptions = { weekday: "short", month: "short", day: "numeric" };
+  const formattedDate = new Date(date).toLocaleDateString("en-US", dateFormatOptions);
   return (
     <aside
       onClick={() => onSelect(eventId)}
@@ -60,7 +64,7 @@ const EventStub = ({
             text-transform: uppercase;
           `}
         >
-          {date} - {location}
+          {formattedDate} - {location}
         </h3>
         <h4
           css={`
@@ -79,7 +83,7 @@ const EventStub = ({
       >
         {summary}
       </p>
-      <TagList>{tags.map((tag, i) => <Tag key={i}>{tag}</Tag>)}</TagList>
+      <TagList>{tags.map((tag, i) => <Tag key={i}>{tag.title.rendered}</Tag>)}</TagList>
     </aside>
   );
 };
@@ -96,6 +100,10 @@ const EventDetail = ({
   mentors,
   description,
 }) => {
+  const mentorNames = mentors.targetItems.map(v => `${v.firstName.rendered} ${v.lastName.rendered}`);
+  const truncatedDescription =  `${R.take(70, R.split(" ", description.rendered)).join(" ")}...`;
+  const eventPath = slugify(title.rendered);
+
   return (
     <article
       css={`
@@ -108,26 +116,26 @@ const EventDetail = ({
       <h4 css={`
         font-size: 1.6rem;
         padding:
-      `}>{title}</h4>
+      `}>{title.rendered}</h4>
       <p css={`
         font-size: 12px;
         margin-bottom: 0.6rem;
         text-transform: uppercase;
         color: #999;
         line-height: 1.4;
-      `}>{location} <br/> {venue}</p>
+      `}>{venue.rendered}</p>
       <p css={`
         font-size: 14px;
         line-height: 1.4;
         color: #999;
         font-style: italic;
         margin-bottom: 0.5rem;
-      `}>Hosted By {mentors.join(', ')}</p>
+      `}>Hosted By {mentorNames.join(', ')}</p>
       <p css={`
        font-size: 14px;
-       margin-bottom: 0;
-      `}>{ description }</p>
-      <Link to={`/${slug}`} css={`
+       margin-bottom: 1.6rem;
+      `}>{truncatedDescription}</p>
+      <Link to={`/events/${eventPath}`} css={`
         background-color: ${COLORS.awesome.string()};
         display: block;
         padding: 0.6rem 0.8rem;
@@ -181,6 +189,8 @@ class UpcomingEvents extends Component {
               css={`
                 width: 50%;
                 margin-right: 3%;
+                overflow: auto;
+                max-height: 470px;
               `}
             >
               {events.map((event, i) => (
@@ -189,11 +199,11 @@ class UpcomingEvents extends Component {
                   eventId={event.id}
                   isSelected={event.id === this.state.selectedEvent}
                   onSelect={this.handleSelectedEvent}
-                  date={event.date}
-                  location={event.location}
-                  title={event.title}
-                  tags={event.tags}
-                  summary={event.summary}
+                  date={event.date.rendered}
+                  location={event.venue.rendered}
+                  title={event.title.rendered}
+                  tags={event.tags.targetItems}
+                  summary={event.summary.rendered}
                 />
               ))}
             </div>

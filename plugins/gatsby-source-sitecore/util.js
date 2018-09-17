@@ -11,7 +11,7 @@ const {
   reject,
   isEmpty,
   when,
-  curry,
+  hasProp,
   is,
   cond,
 } = require('ramda');
