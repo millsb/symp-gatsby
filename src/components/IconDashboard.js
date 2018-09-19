@@ -5,6 +5,7 @@ import PlaceIcon from '@material-ui/icons/PlaceTwoTone';
 import FaceIcon from '@material-ui/icons/FaceTwoTone';
 import SchoolIcon from '@material-ui/icons/SchoolTwoTone';
 import LaptopMacIcon from '@material-ui/icons/LaptopMacTwoTone'
+import {COLORS} from "./common";
 
 
 const IconWrapper = styled('div')`
@@ -60,7 +61,7 @@ const IconBox = ({ icon, stat, text, color }) => {
               align-items: center;
             `}
       >
-        <IconTag nativeColor={color} />
+        <IconTag nativeColor={COLORS[color].string()} />
         <span>{stat}</span>
       </div>
       <p>{text}</p>

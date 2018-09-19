@@ -17,13 +17,29 @@ module.exports = {
         path: `${__dirname}/src/images/`
       }
     },
+    // {
+    //   resolve: 'gatsby-source-sitecore',
+    //   options: {
+    //     token: SC_API_KEY,
+    //     endpoint: 'https://sitecore-622750-single.azurewebsites.net/sitecore/api/graph/items/master',
+    //     queries: `${__dirname}/src/queries/*.graphql`,
+    //   },
+    // },
     {
-      resolve: 'gatsby-source-sitecore',
+      resolve: "gatsby-source-graphql",
       options: {
-        token: SC_API_KEY,
-        endpoint: 'https://sitecore-622750-single.azurewebsites.net/sitecore/api/graph/items/master',
-        queries: `${__dirname}/src/queries/*.graphql`,
-      },
+        // This type will contain remote schema Query type
+        typeName: "sc",
+        // This is field under which it's accessible
+        fieldName: "sc",
+        // Url to query from
+        url: "https://sitecore-622750-single.azurewebsites.net/sitecore/api/graph/items/master",
+        headers: {
+          "sc_apikey": SC_API_KEY
+        },
+        refetchInterval: 30
+      }
     },
+
   ],
 };

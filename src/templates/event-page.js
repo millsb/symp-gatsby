@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 import {InnerContainer} from '../components/common';
+import "../queries/eventFragments";
 
 import Layout from '../components/layout'
 
 const EventPage = ({ data }) => {
-  const event = data.event;
+  const event = data.sc.event;
   return (
     <Layout>
       <InnerContainer noflex>
@@ -22,12 +23,16 @@ export default EventPage;
 
 export const query = graphql`
   query GetEvent($id: String!) {
-    event(id: { eq: $id }) {
-      title {
-        rendered
-      }
-      description {
-        rendered
+    sc {
+      event: item(path: $id) {
+        ...on sc_EventPage {
+          title {
+            rendered
+          }
+          description {
+            rendered
+          }
+        }
       }
     }
   }

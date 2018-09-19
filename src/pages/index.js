@@ -8,63 +8,44 @@ import Testimonial from '../components/Testimonial';
 import Footer from "../components/Footer";
 import { InnerContainer, IntroText } from '../components/common';
 import { COLORS } from '../components/common';
-import { getNodes } from "../util";
+import { nvListToObj } from "../util";
+import "../queries/eventFragments";
+import "../queries/bannerFragments";
+import "../queries/iconDashboardFragments";
 
 const IndexPage = ({ data }) => {
+  console.log(data);
   const bannerImage = data.bannerImage;
-  const events = getNodes(data.events);
-  console.log(events);
+  const introText = data.sc.introText.introText;
+  const events = data.sc.events.children;
+  const banner = data.sc.banner;
+  const testimonial = data.sc.testimonial;
+  const iconDashboard = data.sc.iconDashboard;
+  const iconBlocks = [
+    iconDashboard.blockOne.values,
+    iconDashboard.blockTwo.values,
+    iconDashboard.blockThree.values,
+    iconDashboard.blockFour.values
+  ].map(nvListToObj);
+
 
   return (
     <Layout>
       <Banner
         image={bannerImage}
-        topText={'Spend a weekend getting to know'}
-        bottomText={
-          'Join a local hackathon staffed by experienced experts on a range of technical topics.'
-        }
-        phrases={['Sitecore.', 'GraphQL.', 'React.', 'GatsbyJS.']}
+        topText={banner.topText.rendered}
+        bottomText={banner.bottomText.rendered}
+        phrases={banner.phrases.values.map( val => val.name )}
       />
       <InnerContainer>
         <IntroText>
-          GrokCamp is a non-profit group organizing hackathons and tech events
-          across the globe to help further the education of working
-          professionals, hobbyists, and youth. Hosted by volunteers who possess
-          depth of experience on specific technologies, our mission is to build
-          and foster a mentoring environment.
+          {introText.rendered}
         </IntroText>
       </InnerContainer>
-      <IconDashboard
-        blocks={[
-          {
-            icon: 'face',
-            stat: 102,
-            text: 'Expert Mentors',
-            color: COLORS.green.string(),
-          },
-          {
-            icon: 'place',
-            stat: 24,
-            text: 'Cities Worldwide',
-            color: COLORS.awesome.string(),
-          },
-          {
-            icon: 'school',
-            stat: 37,
-            text: 'Technology Areas',
-            color: COLORS.lapis.string(),
-          },
-          {
-            icon: 'laptop',
-            stat: 4,
-            text: 'Startups Launched',
-            color: COLORS.seafoam.string(),
-          },
-        ]}
-      />
+      <IconDashboard blocks={iconBlocks} />
       <UpcomingEvents events={events} />
       <InnerContainer>
-        <Testimonial attribution={"Eva Wintrish, Developer at ETS Solutions"} text={"GrokCamp has been an invaluable resource in my own personal growth as a developer. Be it attending an educational session or a weekend hackathon, I'm able to learn and collaborate along with fellow engineers"}/>
+        <Testimonial attribution={testimonial.attribution.rendered} text={testimonial.text.rendered}/>
       </InnerContainer>
       <InnerContainer css={`background-color: ${COLORS.lapis.string()}; margin-bottom: 2rem;`}>
         <Footer/>
@@ -75,43 +56,33 @@ const IndexPage = ({ data }) => {
 
 export const query = graphql`
     query HomepageQuery {
-      events:  allEvent {
-        edges {
-          node {
-            id
-            title {
+      sc {
+        introText: item(path: "/sitecore/content/components/home/intro text") {
+          ...on sc_IntroText {
+            introText {
               rendered
             }
-            date {
+          }
+        }
+        events: item(path: "/sitecore/content/home/events") {
+          children {
+            ...EventFields
+          }
+        }
+        banner: item(path: "/sitecore/content/components/home/home banner") {
+          ...BannerFields
+        }
+        iconDashboard: item(path: "/sitecore/content/components/home/home icon dashboard") {
+          ...IconDashboardFields
+        }
+        testimonial: item(path: "/sitecore/content/components/home/home testimonial") {
+          ...on sc_Testimonial {
+            text {
               rendered
             }
-            summary {
+            attribution {
               rendered
             }
-            venue {
-              rendered
-            }
-            description {
-              rendered
-            }
-            mentors {
-              targetItems {
-                firstName {
-                  rendered
-                }
-                lastName {
-                  rendered
-                }
-              }
-            }
-            tags {
-              targetItems {
-                title {
-                  rendered
-                }
-              }
-            }
-
           }
         }
       }

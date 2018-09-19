@@ -15,10 +15,11 @@ exports.createPages = ({ graphql, actions }) => {
     resolve(
       graphql(
         `
-          {
-            allEvent {
-              edges {
-                node {
+        {
+          sc {
+            events: item(path: "sitecore/content/home/events") {
+              children {
+                ...on sc_EventPage {
                   id
                   title {
                     rendered
@@ -27,14 +28,14 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
           }
-        `
+        } 
+       `
       ).then(result => {
         if (result.errors) {
           reject(result.errors);
         }
 
-        console.log(result);
-        result.data.allEvent.edges.forEach(({ node }) => {
+        result.data.sc.events.children.forEach(( node ) => {
           createPage({
             path: `/events/${slugify(node.title.rendered)}`,
             component: eventPageTemplate,
