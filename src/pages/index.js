@@ -12,12 +12,14 @@ import { nvListToObj } from "../util";
 import "../queries/eventFragments";
 import "../queries/bannerFragments";
 import "../queries/iconDashboardFragments";
+import ManagedComponents from '../components/ManagedComponents';
 
 const IndexPage = ({ data }) => {
   console.log(data);
+  const managedIds = data.sc.managedComponents.components.targetItems.map( item => item.id);
   const bannerImage = data.bannerImage;
-  const introText = data.sc.introText.introText;
-  const events = data.sc.events.children;
+  const introText = data.sc.introText;
+  const events = data.sc.events;
   const banner = data.sc.banner;
   const testimonial = data.sc.testimonial;
   const iconDashboard = data.sc.iconDashboard;
@@ -31,22 +33,25 @@ const IndexPage = ({ data }) => {
 
   return (
     <Layout>
-      <Banner
-        image={bannerImage}
-        topText={banner.topText.rendered}
-        bottomText={banner.bottomText.rendered}
-        phrases={banner.phrases.values.map( val => val.name )}
-      />
-      <InnerContainer>
-        <IntroText>
-          {introText.rendered}
-        </IntroText>
-      </InnerContainer>
-      <IconDashboard blocks={iconBlocks} />
-      <UpcomingEvents events={events} />
-      <InnerContainer>
-        <Testimonial attribution={testimonial.attribution.rendered} text={testimonial.text.rendered}/>
-      </InnerContainer>
+      <ManagedComponents ids={managedIds}>
+        <Banner
+          cid={banner.id}
+          image={bannerImage}
+          topText={banner.topText.rendered}
+          bottomText={banner.bottomText.rendered}
+          phrases={banner.phrases.values.map( val => val.name )}
+        />
+        <InnerContainer cid={introText.id}>
+          <IntroText>
+            {introText.introText.rendered}
+          </IntroText>
+        </InnerContainer>
+        <IconDashboard cid={iconDashboard.id } blocks={iconBlocks} />
+        <InnerContainer cid={testimonial.id}>
+          <Testimonial attribution={testimonial.attribution.rendered} text={testimonial.text.rendered}/>
+        </InnerContainer>
+        <UpcomingEvents cid={events.id} events={events.events.targetItems} />
+      </ManagedComponents>
       <InnerContainer css={`background-color: ${COLORS.lapis.string()}; margin-bottom: 2rem;`}>
         <Footer/>
       </InnerContainer>
@@ -57,16 +62,33 @@ const IndexPage = ({ data }) => {
 export const query = graphql`
     query HomepageQuery {
       sc {
+        managedComponents: item(path: "/sitecore/content/home") {
+          ...on sc_HomePage {
+            components {
+              targetItems {
+                id
+              }
+            }
+          }
+        }
         introText: item(path: "/sitecore/content/components/home/intro text") {
+          id
           ...on sc_IntroText {
             introText {
               rendered
             }
           }
         }
-        events: item(path: "/sitecore/content/home/events") {
-          children {
-            ...EventFields
+        events: item(path: "/sitecore/content/components/home/upcoming events") {
+          ...on sc_UpcomingEvents {
+            id
+            events {
+              targetItems {
+                ...on sc_EventPage {
+                  ...EventFields
+                }
+              }
+            }
           }
         }
         banner: item(path: "/sitecore/content/components/home/home banner") {
@@ -76,6 +98,7 @@ export const query = graphql`
           ...IconDashboardFields
         }
         testimonial: item(path: "/sitecore/content/components/home/home testimonial") {
+          id
           ...on sc_Testimonial {
             text {
               rendered
