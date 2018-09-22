@@ -17,14 +17,15 @@ module.exports = {
         path: `${__dirname}/src/images/`
       }
     },
-    // {
-    //   resolve: 'gatsby-source-sitecore',
-    //   options: {
-    //     token: SC_API_KEY,
-    //     endpoint: 'https://sitecore-622750-single.azurewebsites.net/sitecore/api/graph/items/master',
-    //     queries: `${__dirname}/src/queries/*.graphql`,
-    //   },
-    // },
+    {
+      resolve: 'gatsby-source-sitecore-service',
+      options: {
+        services: {
+          siteHeader: "https://sitecore-622750-single.azurewebsites.net/GlobalService.aspx?type=header",
+          siteFooter: "https://sitecore-622750-single.azurewebsites.net/GlobalService.aspx?type=footer"
+        }
+      },
+    },
     {
       resolve: "gatsby-source-graphql",
       options: {

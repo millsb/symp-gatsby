@@ -8,6 +8,7 @@
     "@babel/plugin-syntax-json-strings": "7.0.0",
     "@material-ui/core": "^1.5.0",
     "@material-ui/icons": "^2.0.2",
+    "axios": "^0.18.0",
     "case": "^1.5.5",
     "color": "^3.0.0",
     "core-js": "^2.5.7",
@@ -47,7 +48,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "prettier": "^1.12.0"
+    "prettier": "^1.12.0",
+    "uuid": "^3.3.2"
   },
   "repository": {
     "type": "git",
