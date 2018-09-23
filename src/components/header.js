@@ -40,7 +40,7 @@ const Header = ({ siteTitle, navItems }) => (
         {siteTitle}
       </TitleArea>
       <NavArea>
-        {navItems.map( (item, i) => <NavLink key={i} to={item.path}>{item.label}</NavLink>)}
+        {navItems.map( (item, i) => <NavLink key={i} to={item.url}>{item.text}</NavLink>)}
       </NavArea>
     </InnerContainer>
   </div>
@@ -49,8 +49,8 @@ const Header = ({ siteTitle, navItems }) => (
 
 const {string, shape, arrayOf } = PropTypes;
 const navItemShape = shape({
-  label: string.isRequired,
-  path: string.isRequired
+  url: string.isRequired,
+  text: string.isRequired
 });
 
 Header.propTypes = {

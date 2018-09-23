@@ -1,3 +1,6 @@
+
+import {graphql} from "gatsby";
+
 export const iconDashboardFields = graphql`
   fragment IconDashboardFields on sc_IconDashboard {
     id

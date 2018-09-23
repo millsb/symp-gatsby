@@ -1,3 +1,5 @@
+import {graphql} from "gatsby";
+
 export const eventFieldsFragment = graphql`
   fragment EventFields on sc_EventPage {
     id

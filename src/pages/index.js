@@ -5,9 +5,7 @@ import Layout from '../components/layout';
 import IconDashboard from '../components/IconDashboard';
 import UpcomingEvents from '../components/UpcomingEvents';
 import Testimonial from '../components/Testimonial';
-import Footer from "../components/Footer";
 import { InnerContainer, IntroText } from '../components/common';
-import { COLORS } from '../components/common';
 import { nvListToObj } from "../util";
 import "../queries/eventFragments";
 import "../queries/bannerFragments";
@@ -52,9 +50,6 @@ const IndexPage = ({ data }) => {
         </InnerContainer>
         <UpcomingEvents cid={events.id} events={events.events.targetItems} />
       </ManagedComponents>
-      <InnerContainer css={`background-color: ${COLORS.lapis.string()}; margin-bottom: 2rem;`}>
-        <Footer/>
-      </InnerContainer>
     </Layout>
   );
 };

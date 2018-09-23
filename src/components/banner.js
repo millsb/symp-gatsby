@@ -20,12 +20,13 @@ const BannerText = styled('div')`
 
 function Banner(props) {
   let { image, phrases, topText, bottomText } = props;
+  const dotPhrases = phrases.map(p => `${p}.`);
   return (
     <figure css={`position: relative; margin-bottom: 0;`}>
       <img css={`margin-bottom: 0`} srcSet={image.fluid.srcSet} alt="banner" />
       <figcaption css={`width: 100%`}>
         <BannerText>
-          <p>{topText}&nbsp;<ReactRotatingText style={{color: COLORS.awesome, fontSize: '3rem'}} items={phrases} /></p>
+          <p>{topText}&nbsp;<ReactRotatingText style={{color: COLORS.awesome, fontSize: '3rem'}} items={dotPhrases} /></p>
           <p css={`font-size: 1.8rem; color: #fff; line-height: 1.2;`}>{bottomText}</p>
         </BannerText>
       </figcaption>
