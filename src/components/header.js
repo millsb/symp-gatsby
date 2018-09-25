@@ -7,6 +7,10 @@ import PropTypes from "prop-types";
 const TitleArea = styled("h1")`
   font-size: 1.85rem;
   margin-bottom: 0;
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 `;
 
 const NavArea = styled("nav")`
@@ -27,9 +31,8 @@ const NavLink = styled(Link)`
 const Header = ({ siteTitle, navItems }) => (
   <div
     css={`
-      box-shadow: 1px 1px 1px #333;
-      border-bottom: 2px solid ${COLORS.green.string()};
       padding: .75rem 0;
+      border-bottom: 2px solid ${COLORS.green.string()};
       color: ${COLORS.awesome.string()};
       display: flex;
       justify-content: space-between;
@@ -37,7 +40,7 @@ const Header = ({ siteTitle, navItems }) => (
 
     <InnerContainer css={`justify-content: space-between; align-items: center`}>
       <TitleArea>
-        {siteTitle}
+        <a href="/">{siteTitle}</a>
       </TitleArea>
       <NavArea>
         {navItems.map( (item, i) => <NavLink key={i} to={item.url}>{item.text}</NavLink>)}

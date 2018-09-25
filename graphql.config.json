@@ -3,14 +3,15 @@
   "schema": {
     "README_request" : "To request the schema from a url instead, remove the 'file' JSON property above (and optionally delete the default graphql.schema.json file).",
     "request": {
-      "url" : "https://sitecore-622750-single.azurewebsites.net/sitecore/api/graph/items/master",
+      //"url" : "https://sitecore-622750-single.azurewebsites.net/sitecore/api/graph/items/master",
+      "url": "http://localhost:8000/___graphql",
       "method" : "POST",
       "README_postIntrospectionQuery" : "Whether to POST an introspectionQuery to the url. If the url always returns the schema JSON, set to false and consider using GET",
       "postIntrospectionQuery" : true,
       "README_options" : "See the 'Options' section at https://github.com/then/then-request",
       "options" : {
         "headers": {
-          "sc_apikey": "75975ED5-7D7A-4E2D-995A-BB526D511A01"
+          // "sc_apikey": "75975ED5-7D7A-4E2D-995A-BB526D511A01"
         }
       }
     }
@@ -19,11 +20,12 @@
   "README_endpoints": "A list of GraphQL endpoints that can be queried from '.graphql' files in the IDE",
   "endpoints" : [
     {
-      "name": "Sitecore",
-      "url" : "https://sitecore-622750-single.azurewebsites.net/sitecore/api/graph/items/master",
+      "name": "Gatsby",
+      // "url" : "https://sitecore-622750-single.azurewebsites.net/sitecore/api/graph/items/master",
+      url: "http://localhost:8000/___graphql"
       "options" : {
         "headers": {
-          "sc_apikey": "75975ED5-7D7A-4E2D-995A-BB526D511A01"
+          // "sc_apikey": "75975ED5-7D7A-4E2D-995A-BB526D511A01"
         }
       }
     }

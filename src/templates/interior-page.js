@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import {InnerContainer} from '../components/common';
+import RichText from '../components/RichText';
 import "../queries/eventFragments";
 
 import Layout from '../components/layout'
@@ -10,9 +11,9 @@ const InteriorPage = ({ data }) => {
   console.log("page", page);
   return (
     <Layout>
-      <InnerContainer noflex>
+      <InnerContainer css={`padding-top: 2rem;`} noflex>
         <h1>{page.heading.rendered}</h1>
-        <article dangerouslySetInnerHTML={{__html: page.body.rendered}}/>
+        <RichText body={page.body.rendered}/>
       </InnerContainer>
     </Layout>
   )
