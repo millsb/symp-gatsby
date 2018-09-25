@@ -12,6 +12,8 @@ exports.createPages = ({ graphql, actions }) => {
 
   return new Promise((resolve, reject) => {
     const eventPageTemplate = path.resolve(`src/templates/event-page.js`);
+    const interiorPageTemplate = path.resolve("src/templates/interior-page.js");
+
     resolve(
       graphql(
         `
@@ -28,12 +30,30 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
           }
+          navPages: siteHeader {
+            links {
+              id
+              url
+            }
+          }
         } 
        `
       ).then(result => {
         if (result.errors) {
           reject(result.errors);
         }
+
+        result.data.navPages.links.forEach( (node) => {
+          if (node.url && node.url !== '') {
+            createPage({
+              path: node.url,
+              component: interiorPageTemplate,
+              context: {
+                id: node.id
+              }
+            })
+          }
+        });
 
         result.data.sc.events.children.forEach(( node ) => {
           createPage({
