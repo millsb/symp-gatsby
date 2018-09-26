@@ -3,7 +3,6 @@ import styled from "react-emotion";
 
 const RichText = ({body}) => {
   const Wrapper = styled('div')`
-    max-width: 70%;
     margin-bottom: 3rem;
     line-height: 1.8;
     

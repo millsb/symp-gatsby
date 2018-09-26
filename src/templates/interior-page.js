@@ -11,7 +11,7 @@ const InteriorPage = ({ data }) => {
   console.log("page", page);
   return (
     <Layout>
-      <InnerContainer css={`padding-top: 2rem;`} noflex>
+      <InnerContainer css={`padding-top: 3rem; padding-right: 30%`} noflex>
         <h1>{page.heading.rendered}</h1>
         <RichText body={page.body.rendered}/>
       </InnerContainer>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as R from "ramda";
 import styled from 'react-emotion';
 import { COLORS, Heading, InnerContainer } from './common';
+import RichText from "./RichText";
 import Link from "gatsby-link";
 import slugify from "slugify";
 
@@ -101,7 +102,7 @@ const EventDetail = ({
   description,
 }) => {
   const mentorNames = mentors.targetItems.map(v => `${v.firstName.rendered} ${v.lastName.rendered}`);
-  const truncatedDescription =  `${R.take(70, R.split(" ", description.rendered)).join(" ")}...`;
+  const truncatedDescription =  `${R.take(40, R.split(" ", description.rendered)).join(" ")}...`;
   const eventPath = slugify(title.rendered);
 
   return (
@@ -131,10 +132,7 @@ const EventDetail = ({
         font-style: italic;
         margin-bottom: 0.5rem;
       `}>Hosted By {mentorNames.join(', ')}</p>
-      <p css={`
-       font-size: 14px;
-       margin-bottom: 1.6rem;
-      `}>{truncatedDescription}</p>
+      <RichText body={truncatedDescription} />
       <Link to={`/events/${eventPath}`} css={`
         background-color: ${COLORS.awesome.string()};
         display: block;
