@@ -1,9 +1,9 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import Banner from '../components/banner';
-import Layout from '../components/layout';
+import Banner from '../components/Banner';
+import Layout from '../components/Layout';
 import IconDashboard from '../components/IconDashboard';
-import UpcomingEvents from '../components/UpcomingEvents';
+import UpcomingEvents from '../components/events/UpcomingEvents';
 import Testimonial from '../components/Testimonial';
 import { InnerContainer, IntroText } from '../components/common';
 import { nvListToObj } from "../util";

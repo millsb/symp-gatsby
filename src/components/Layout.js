@@ -4,7 +4,7 @@ import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
 
 import { COLORS, InnerContainer } from './common';
-import Header from './header';
+import Header from './Header';
 import Footer from './Footer';
 import './layout.scss';
 

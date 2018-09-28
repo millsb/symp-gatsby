@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import {InnerContainer} from '../components/common';
 import "../queries/eventFragments";
 
-import Layout from '../components/layout'
+import Layout from '../components/Layout'
 import RichText from '../components/RichText';
 
 const EventPage = ({ data }) => {

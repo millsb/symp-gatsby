@@ -4,7 +4,7 @@ import {InnerContainer} from '../components/common';
 import RichText from '../components/RichText';
 import "../queries/eventFragments";
 
-import Layout from '../components/layout'
+import Layout from '../components/Layout'
 
 const InteriorPage = ({ data }) => {
   const page = data.sc.page;

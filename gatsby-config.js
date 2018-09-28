@@ -46,7 +46,7 @@ module.exports = {
           const introspectionData = await request(introspectionUrl, introspectionQuery);
           return buildClientSchema(introspectionData);
         },
-        refetchInterval: 30
+        refetchInterval: 10
       }
     },
 
