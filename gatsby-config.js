@@ -1,7 +1,9 @@
 const {introspectionQuery, buildClientSchema} = require("graphql");
 const {request} = require("graphql-request");
-const SC_GRAPHQL_URL = 'https://sitecore-622750-single.azurewebsites.net/sitecore/api/graph/items/master';
-const SC_API_KEY = '75975ED5-7D7A-4E2D-995A-BB526D511A01';
+const SC_HOST = "http://symp.local";
+const SC_DB = "master";
+const SC_GRAPHQL_URL = `${SC_HOST}/sitecore/api/graph/items/${SC_DB}`;
+const SC_API_KEY = '89746470-C1BB-4559-BB59-CBFCB761D9AE';
 
 module.exports = {
   siteMetadata: {
@@ -21,11 +23,21 @@ module.exports = {
       }
     },
     {
+      resolve: 'gatsby-plugin-sitecore-media',
+      options: {
+        endpoint: SC_GRAPHQL_URL,
+        apiKey: SC_API_KEY,
+        mediaLibraryPath: '/sitecore/media library/grokcamp',
+        destination: '../../static',
+        host: SC_HOST
+      }
+    },
+    {
       resolve: 'gatsby-source-sitecore-service',
       options: {
         services: {
-          siteHeader: "https://sitecore-622750-single.azurewebsites.net/GlobalService.aspx?type=header",
-          siteFooter: "https://sitecore-622750-single.azurewebsites.net/GlobalService.aspx?type=footer"
+          siteHeader: `${SC_HOST}/GlobalService.aspx?type=header`,
+          siteFooter: `${SC_HOST}/GlobalService.aspx?type=footer`
         }
       },
     },

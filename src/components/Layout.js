@@ -33,9 +33,9 @@ const Layout = ({ children, data }) => (
       }
     `}
     render={data => {
-      console.log("layout", data);
+      console.log('layout', data);
       return (
-        <>
+        <div  css={`min-height: 100%;`}>
           <Helmet
             title={data.siteHeader.title}
             meta={[
@@ -55,13 +55,15 @@ const Layout = ({ children, data }) => (
           <div>{children}</div>
           <InnerContainer
             css={`
+              grid-row-start: 2;
+              grid-row-end: 3;
               background-color: ${COLORS.lapis.string()};
               margin-bottom: 2rem;
             `}
           >
             <Footer {...data.siteFooter} />
           </InnerContainer>
-        </>
+        </div>
       );
     }}
   />

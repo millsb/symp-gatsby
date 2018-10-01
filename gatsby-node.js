@@ -43,29 +43,33 @@ exports.createPages = ({ graphql, actions }) => {
           reject(result.errors);
         }
 
-        result.data.navPages.links.forEach( (node) => {
-          if (node.url && node.url !== '') {
+        if (result.data.navPages) {
+          result.data.navPages.links.forEach( (node) => {
+            if (node.url && node.url !== '') {
+              createPage({
+                path: node.url,
+                component: interiorPageTemplate,
+                context: {
+                  id: node.id
+                }
+              })
+            }
+          });
+        }
+
+        if (result.data.sc.events) {
+          result.data.sc.events.children.forEach(( node ) => {
             createPage({
-              path: node.url,
-              component: interiorPageTemplate,
+              path: `/events/${slugify(node.title.rendered)}`,
+              component: eventPageTemplate,
+              // In your blog post template's graphql query, you can use path
+              // as a GraphQL variable to query for data from the markdown file.
               context: {
                 id: node.id
-              }
-            })
-          }
-        });
-
-        result.data.sc.events.children.forEach(( node ) => {
-          createPage({
-            path: `/events/${slugify(node.title.rendered)}`,
-            component: eventPageTemplate,
-            // In your blog post template's graphql query, you can use path
-            // as a GraphQL variable to query for data from the markdown file.
-            context: {
-              id: node.id
-            },
+              },
+            });
           });
-        });
+        }
       })
     );
   });

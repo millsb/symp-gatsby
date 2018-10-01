@@ -5,16 +5,21 @@ import "../queries/eventFragments";
 
 import Layout from '../components/Layout'
 import RichText from '../components/RichText';
+import MentorList from '../components/MentorList';
 
 const EventPage = ({ data }) => {
   const event = data.sc.event;
+  const mentors = event.mentors.targetItems;
+
   return (
     <Layout>
-      <InnerContainer noflex css={`padding-top: 3rem; padding-right: 30%; `}>
+      <InnerContainer noflex css={`padding-top: 3rem;`}>
         <h1>{event.title.rendered}</h1>
-        <article>
-          <RichText body={event.description.rendered}/>
-        </article>
+        <h2><em>{event.summary.rendered}</em></h2>
+          <article css={`max-width: 65%`}>
+            <RichText body={event.description.rendered}/>
+          </article>
+          <MentorList people={mentors} />
       </InnerContainer>
     </Layout>
   )
@@ -32,6 +37,26 @@ export const query = graphql`
           }
           description {
             rendered
+          }
+          summary {
+            rendered
+          }
+          mentors {
+            targetItems {
+              ...on sc_Person {
+                firstName {
+                  rendered
+                 }
+                 lastName {
+                   rendered
+                 }
+                headshot {
+                  ...on sc_ImageField {
+                    src
+                  }
+                }
+              }
+            }
           }
         }
       }
