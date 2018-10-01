@@ -19,7 +19,7 @@ const EventPage = ({ data }) => {
           <article css={`max-width: 65%`}>
             <RichText body={event.description.rendered}/>
           </article>
-          <MentorList people={mentors} />
+          <MentorList people={mentors}/>
       </InnerContainer>
     </Layout>
   )

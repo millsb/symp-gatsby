@@ -16,6 +16,7 @@
     "emotion": "^9.2.6",
     "emotion-server": "^9.2.6",
     "gatsby": "2.0.1",
+    "gatsby-image": "^2.0.13",
     "gatsby-plugin-emotion": "^2.0.5",
     "gatsby-plugin-react-helmet": "^3.0.0",
     "gatsby-plugin-sass": "^2.0.1",

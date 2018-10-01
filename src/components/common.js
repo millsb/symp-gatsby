@@ -22,6 +22,10 @@ export const InnerContainer = styled("div")`
     width: 100%;
     max-width: 1120px;
     margin: 0 auto;
+    
+    @media(max-width: 680px) {
+      flex-direction: column;
+    }
 `;
 
 export const IntroText = styled("p")`

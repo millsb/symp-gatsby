@@ -112,7 +112,7 @@ export const query = graphql`
           maxHeight: 520
           duotone: { highlight: "#247ba0", shadow: "#0e0b16", opacity: 80 }
         ) {
-          srcSet
+          ...GatsbyImageSharpFluid
         }
       }
     }
