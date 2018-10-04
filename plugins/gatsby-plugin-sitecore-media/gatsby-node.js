@@ -63,7 +63,10 @@ exports.onPreInit = async (
     }
 
     if (response) {
-      const imagePath = `${destPath}/${media.url.replace('/en/sitecore/media-library', "-/media")}.${media.extension.rendered}`;
+      const revisedSegment = media.url
+        .replace("/en", "")
+        .replace("/sitecore/media-library", "-/media");
+      const imagePath = `${destPath}/${revisedSegment}.${media.extension.rendered}`;
       response.data.pipe(fs.createWriteStream(imagePath));
     }
 
