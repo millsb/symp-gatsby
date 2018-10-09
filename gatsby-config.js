@@ -1,4 +1,5 @@
 const {introspectionQuery, buildClientSchema} = require("graphql");
+const path = require("path");
 const {request} = require("graphql-request");
 const SC_HOST = "http://symp.local";
 const SC_DB = "master";
@@ -19,7 +20,7 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: "images",
-        path: `src/images/`
+        path: path.resolve(__dirname, 'src/images')
       }
     },
     {
