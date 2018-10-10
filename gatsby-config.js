@@ -14,15 +14,6 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sass',
     'gatsby-plugin-emotion',
-    'gatsby-plugin-sharp',
-    'gatsby-transformer-sharp',
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: "images",
-        path: path.resolve(__dirname, 'src/images')
-      }
-    },
     {
       resolve: 'gatsby-plugin-sitecore-media',
       options: {

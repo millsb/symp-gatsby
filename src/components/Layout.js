@@ -33,7 +33,6 @@ const Layout = ({ children, data }) => (
       }
     `}
     render={data => {
-      console.log('layout', data);
       return (
         <div  css={`min-height: 100%;`}>
           <Helmet

@@ -13,7 +13,6 @@ import "../queries/iconDashboardFragments";
 import ManagedComponents from '../components/ManagedComponents';
 
 const IndexPage = ({ data }) => {
-  console.log(data);
   const managedIds = data.sc.managedComponents.components.targetItems.map( item => item.id);
   const bannerImage = data.bannerImage;
   const introText = data.sc.introText;
@@ -102,17 +101,6 @@ export const query = graphql`
               rendered
             }
           }
-        }
-      }
-      bannerImage: imageSharp(
-        original: { src: { regex: "/stefan-stefancik-257625-unsplash/" } }
-      ) {
-        fluid(
-          maxWidth: 1440
-          maxHeight: 520
-          duotone: { highlight: "#247ba0", shadow: "#0e0b16", opacity: 80 }
-        ) {
-          ...GatsbyImageSharpFluid
         }
       }
     }

@@ -8,7 +8,6 @@ import Layout from '../components/Layout'
 
 const InteriorPage = ({ data }) => {
   const page = data.sc.page;
-  console.log("page", page);
   return (
     <Layout>
       <InnerContainer css={`padding-top: 3rem; padding-right: 30%`} noflex>

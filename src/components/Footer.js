@@ -66,7 +66,6 @@ export default ({
       padding: 0.3rem 0.1rem;
     }
   `;
-  console.log(informationLinks);
   return (
     <Footer>
       <aside>

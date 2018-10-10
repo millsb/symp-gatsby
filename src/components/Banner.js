@@ -3,7 +3,6 @@ import ReactRotatingText from 'react-rotating-text';
 import styled  from 'react-emotion';
 import { COLORS } from './common';
 import * as PropTypes from 'prop-types';
-import Img from 'gatsby-image';
 import './banner.scss';
 
 const BannerText = styled('div')`
@@ -51,7 +50,7 @@ function Banner(props) {
   const dotPhrases = phrases.map(p => `${p}.`);
   return (
     <figure css={`position: relative; margin-bottom: 0;`}>
-      <Img css={`margin-bottom: 0`} fluid={image.fluid} alt="banner" />
+      <img css={`margin-bottom: 0`} src="/banner.jpg" alt="banner" />
       <figcaption css={`width: 100%`}>
         <BannerText>
           <p>{topText}&nbsp;<ReactRotatingText style={{color: COLORS.awesome, fontSize: '3rem'}} items={dotPhrases} /></p>
